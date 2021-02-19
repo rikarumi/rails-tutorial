@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: %i[ show edit update destroy ]
+  before_action :set_idea, only: %i[ show edit update destroy]
 
   # GET /ideas or /ideas.json
   def index
@@ -64,6 +64,6 @@ class IdeasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def idea_params
-      params.require(:idea).permit(:name, :description, :picture)
+      params.require(:idea).permit(:name, :description, :picture, :status)
     end
 end

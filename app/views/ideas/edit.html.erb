@@ -1,6 +1,10 @@
-<h1>Editing Idea</h1>
+<div class="mt-2 pb-2">
+  <h1>Editing Idea</h1>
+</div>
 
 <%= render 'form', idea: @idea %>
 
-<%= link_to 'Show', @idea %> |
-<%= link_to 'Back', ideas_path %>
+<div class="float-left p-1">
+  <%= link_to 'Show', @idea , class: "text-muted" %> |
+  <%= link_to 'Back', ideas_path, class: "text-muted" %>
+</div>

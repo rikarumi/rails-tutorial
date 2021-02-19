@@ -1,3 +1,4 @@
+<div class="card p-2">
 <%= form_with(model: idea, local: true) do |form| %>
   <% if idea.errors.any? %>
     <div id="error_explanation">
@@ -21,12 +22,18 @@
     <%= form.text_area :description %>
   </div>
 
-  <div class="field">
+  <div class="field mb-4">
     <%= form.label :picture %>
     <%= form.file_field :picture %>
   </div>
 
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, [:active, :inactive] %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-success p-2" %>
   </div>
 <% end %>
+</div>

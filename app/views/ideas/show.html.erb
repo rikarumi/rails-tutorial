@@ -1,19 +1,31 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @idea.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @idea.description %>
-</p>
-
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag(@idea.picture_url, width: 600) if @idea.picture.present? %>
-</p>
-
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Picture</th>
+      <th scope="col">Status</th>
+    </tr>
+    <tbody>
+    <tr>
+      <td><%= @idea.name %></td>
+      <td><%= @idea.description %></td>
+      <td><%= image_tag(@idea.picture_url, width: 600) if @idea.picture.present? %></td>
+      <td>
+        <% if @idea.active? %>
+          <%= fa_icon "check", class: "text-success" %>
+          <%= link_to "deactivate", status_path(id: @idea.id), method: :put, class: "text-muted" %>
+        <% else %>
+          <%= fa_icon "times", class: "text-danger" %>
+          <%= link_to "activate", status_path(id: @idea.id), method: :put, class: "text-muted" %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</thead>
+</table>
+<div class="float-left">
+  <%= link_to 'Edit', edit_idea_path(@idea), class: "text-muted" %> |
+  <%= link_to 'Back', ideas_path, class: "text-muted" %>
+</div>

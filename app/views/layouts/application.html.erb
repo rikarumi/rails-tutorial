@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('ror.png') %>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="/">The Idea App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -19,11 +20,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/ideas">Ideas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/pages/info">Info</a>
+            <li class="nav-item <%= 'active' if request.path == ideas_path %>">
+              <%= link_to "Ideas", ideas_path, class: "nav-link" %>
+              </li>
+            <li class="nav-item <%= 'active' if request.path == pages_info_path %>">
+              <%= link_to "Info", pages_info_path, class: "nav-link" %>
             </li>
           </ul>
         </div>
@@ -36,7 +37,13 @@
 
     <footer>
       <div class="container">
-        Rails Girls <%= Time.now.year %>
+        <%= link_to "Rails Girls", pages_info_path, class: "text-muted" %> <%= Time.now.year %>
+        <div>
+          Icons made by
+          <%= link_to 'Freepik', "https://www.freepik.com", class: "text-muted"%>
+          from
+          <%= link_to 'www.flaticon.com', "https://www.flaticon.com/", class: "text-muted" %>
+        </div>
       </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

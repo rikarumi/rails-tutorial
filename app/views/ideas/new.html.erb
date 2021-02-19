@@ -1,5 +1,7 @@
 <h1>New Idea</h1>
-
-<%= render 'form', idea: @idea %>
-
-<%= link_to 'Back', ideas_path %>
+<div class="card p-4 mt-4 ml-5 mr-5">
+  <%= render 'form', idea: @idea %>
+</div>
+<div class="text-center m-2">
+  <%= link_to 'Back', ideas_path, class: "btn btn-dark" %>
+</div>
