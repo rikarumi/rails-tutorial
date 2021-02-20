@@ -22,7 +22,10 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item <%= 'active' if request.path == ideas_path %>">
               <%= link_to "Ideas", ideas_path, class: "nav-link" %>
-              </li>
+            </li>
+            <li class="nav-item <%= 'active' if request.path == users_path %>">
+              <%= link_to "User", users_path, class: "nav-link" %>
+            </li>
             <li class="nav-item <%= 'active' if request.path == pages_info_path %>">
               <%= link_to "Info", pages_info_path, class: "nav-link" %>
             </li>
