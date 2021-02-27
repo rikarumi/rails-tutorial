@@ -1,2 +1,2 @@
 # README
-Ruby rails intro based on http://guides.railsgirls.com/app
+Ruby on rails intro based on http://guides.railsgirls.com/app
