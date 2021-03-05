@@ -22,6 +22,9 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    
+    # store all emails in lowercase to avoid duplicates and case-sensitive login errors:
+    @user.email.downcase!
 
     respond_to do |format|
       if @user.save
@@ -64,6 +67,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end
