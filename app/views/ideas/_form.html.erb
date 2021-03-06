@@ -28,11 +28,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, [:active, :inactive] %>
-  </div>
-
-  <div class="field">
     <%= form.label :user %>
     <%= form.select :user_id, User.all.collect{ |user| [user.name, user.id] }, include_blank: false %>
   </div>
