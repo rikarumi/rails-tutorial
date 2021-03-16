@@ -22,8 +22,9 @@
           <ul class="navbar-nav mr-auto">
           <li class="nav-item <%= 'active' if request.path == home_index_path %>">
               <%= link_to "Home", home_index_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item <%= 'active' if request.path == ideas_path %>">
+              </li>
+              <% if current_user %>
+              <li class="nav-item <%= 'active' if request.path == ideas_path %>">
               <%= link_to "Ideas", ideas_path, class: "nav-link" %>
             </li>
             <li class="nav-item <%= 'active' if request.path == users_path %>">
@@ -32,6 +33,17 @@
             <li class="nav-item <%= 'active' if request.path == pages_info_path %>">
               <%= link_to "Info", pages_info_path, class: "nav-link" %>
             </li>
+            <li class="nav-item">
+              Logged in as <%= current_user.email %>.
+              <%= link_to "Log Out", logout_path %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign Up", signup_path %> or 
+              <%= link_to "Log In", login_path %>
+              </li>
+            <% end %>
+
           </ul>
         </div>
       </div>
