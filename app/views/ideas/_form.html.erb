@@ -27,11 +27,6 @@
     <%= form.file_field :picture %>
   </div>
 
-  <div class="field">
-    <%= form.label :user %>
-    <%= form.select :user_id, User.all.collect{ |user| [user.name, user.id] }, include_blank: false %>
-  </div>
-
   <div class="actions">
     <%= form.submit class: "btn btn-success p-2" %>
   </div>
