@@ -2,8 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Idea, :type => :model do
-    
+RSpec.describe Idea do  
     describe "Validations" do
         let(:user) { User.create(
             name: "Name",
@@ -25,15 +24,15 @@ RSpec.describe Idea, :type => :model do
             expect(subject).to_not be_valid
         end
 
-    it "is not valid without a description" do
-            subject.description = nil
-            expect(subject).to_not be_valid
-        end
+        it "is not valid without a description" do
+                subject.description = nil
+                expect(subject).to_not be_valid
+            end
 
-    it "is not valid without a picture" do
-            subject.picture = nil
-            expect(subject).to be_valid
-        end
+        it "is not valid without a picture" do
+                subject.picture = nil
+                expect(subject).to be_valid
+            end
 
         it "is not valid without a status" do
             subject.status = nil

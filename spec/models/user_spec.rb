@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
+RSpec.describe User do
     subject { described_class.new(
         name: "Name",
         email: "email@email.com"
