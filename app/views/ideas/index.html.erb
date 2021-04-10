@@ -8,8 +8,9 @@
       <th>Name</th>
       <th>Description</th>
       <th>Picture</th>
+      <th>Author</th>
       <th>Status</th>
-      <th colspan="4">Action</th>
+      <th colspan="8">Action</th>
     </tr>
   </thead>
 
@@ -22,19 +23,21 @@
           <td><%= idea.name %></td>
           <td><%= idea.description %></td>
           <td><%= image_tag idea.picture_url, width: '50%' if idea.picture.present? %></td>
-          <td colspan="2" class="text-center">
-
-            <% if idea.active? %>
-              <%= fa_icon "check", class: "text-success" %>
-              <%= link_to "deactivate", status_path(id: idea.id), method: :put, class: "text-muted" %>
-            <% else %>
-              <%= fa_icon "times", class: "text-danger" %>
-              <%= link_to "activate", status_path(id: idea.id), method: :put, class: "text-muted" %>
-            <% end %>
-          </td>
+          <td><%= User.find(idea.user_id).name %></td>
+          <td><%= idea.status.humanize %></td>
           <td><%= link_to fa_icon(:eye), idea, class: "text-primary", aria: { label: "Show"} %></td>
           <td><%= link_to fa_icon(:pencil), edit_idea_path(idea), class: "text-success", aria: { label: "Edit"} %></td>
           <td><%= link_to fa_icon(:trash), idea, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger", aria: { label: "Delete"} %></td>
+          <td colspan="2" class="text-center">
+            <% if idea.approved? %>
+              <%= link_to "reject", status_path(id: idea.id, status: :rejected), method: :put, class: "text-muted" %>
+            <% elsif idea.pending?%>
+              <%= link_to "approve", status_path(id: idea.id, status: :approved), method: :put, class: "text-muted" %>
+              <%= link_to "reject", status_path(id: idea.id, status: :rejected), method: :put, class: "text-muted" %>
+            <% else %>
+              <%= link_to "approve", status_path(id: idea.id, status: :approved), method: :put, class: "text-muted" %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     <% end %>

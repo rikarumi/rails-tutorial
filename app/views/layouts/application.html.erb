@@ -20,15 +20,36 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item <%= 'active' if request.path == ideas_path %>">
-              <%= link_to "Ideas", ideas_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item <%= 'active' if request.path == users_path %>">
-              <%= link_to "User", users_path, class: "nav-link" %>
-            </li>
+            <% if current_user %>
+              <li class="nav-item <%= 'active' if request.path == ideas_path %>">
+                <%= link_to "Ideas", ideas_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item <%= 'active' if request.path == users_path %>">
+                <%= link_to "User", users_path, class: "nav-link" %>
+              </li>
+            <% end %>
             <li class="nav-item <%= 'active' if request.path == pages_info_path %>">
               <%= link_to "Info", pages_info_path, class: "nav-link" %>
             </li>
+          </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <% if current_user %>
+              <li class="nav-item">
+                <a class="nav-link" > Logged in as <%= current_user.email %> </a>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log Out", logout_path, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign Up", signup_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log In", login_path, class: "nav-link" %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

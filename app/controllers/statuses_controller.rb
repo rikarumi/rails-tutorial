@@ -2,11 +2,7 @@ class StatusesController < ApplicationController
   def update
     @idea = idea
 
-    if @idea.active?
-      @idea.update(status: :inactive)
-    else
-      @idea.update(status: :active)
-    end
+    @idea.update(status: params[:status])
 
     redirect_back fallback_location: ideas_path
   end
